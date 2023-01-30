@@ -1,0 +1,11 @@
+{
+  "name": "wechaty-guess-song",
+  "version": "0.0.0",
+  "description": "A Wechaty plugin to play guess song game in a room",
+  "keywords": ["wechaty", "guess", "song"],
+  "author": "Jack Lu <jacklu@jacklu.me>",
+  "license": "ISC",
+  "peerDependencies": {
+    "wechaty": "^0.60.10"
+  }
+}
