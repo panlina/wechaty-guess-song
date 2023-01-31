@@ -12,7 +12,11 @@ var { MessageType, FileBox } = require("wechaty-puppet");
  */
 module.exports = function WechatyGuessSongPlugin(config) {
 	return function (/** @type {Wechaty} */bot) {
-		bot.on("message", async (/** @type {Message} */message) => {
+		bot.on("message", listener);
+		return () => {
+			bot.off("message", listener);
+		};
+		async function listener(/** @type {Message} */message) {
 			if (message.talker().self()) {
 				var match = message.text().match(/^guess-song: (.*)/);
 				if (match) {
@@ -25,7 +29,7 @@ module.exports = function WechatyGuessSongPlugin(config) {
 					play(room);
 				}
 			}
-		});
+		}
 	};
 	async function play(/** @type {Room} */room) {
 		/** @type {Set<Contact["id"]>} */
