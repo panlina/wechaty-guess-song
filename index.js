@@ -60,8 +60,14 @@ module.exports = function WechatyGuessSongPlugin(config) {
 		async function start() {
 			await room.say(`人数足够，即将开始比赛，请作好准备，抢答时间只有${config.answerTimeout / 1000}秒。`);
 			setTimeout(async () => {
-				var song = await config.fetch();
-				await room.say(song.preview);
+				try {
+					var song = await config.fetch();
+					await room.say(song.preview);
+				}
+				catch (/** @type {string} */error) {
+					await room.say(error);
+					return;
+				}
 				room.on('message', answerListener);
 				var timer = setTimeout(async () => {
 					room.off('message', answerListener);
