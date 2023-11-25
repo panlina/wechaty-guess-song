@@ -41,7 +41,7 @@ module.exports = function WechatyGuessSongPlugin(config) {
 	async function play(/** @type {Room} */room) {
 		/** @type {Set<Contact["id"]>} */
 		var vote = new Set();
-		await room.say(`猜歌曲比赛即将进行，${config.voteTimeout / 1000}秒内回复\".\"人数>=${config.voteMin}时比赛开始。比赛奖励：红包5元。`);
+		await room.say(`猜歌曲比赛即将进行，回复\".\"报名，${config.voteTimeout / 1000}秒内报名人数>=${config.voteMin}时比赛开始。比赛奖励：红包5元。`);
 		room.on('message', voteCounter);
 		function voteCounter(/** @type {Message} */message) {
 			if (message.text() == '.') {
